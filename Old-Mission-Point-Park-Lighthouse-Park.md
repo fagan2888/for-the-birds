@@ -2,7 +2,7 @@
 # Old Mission Point Park/Lighthouse Park
 
 * Grand Traverse, Michigan, US
-* `[ebird.org/ebird/hotspot/L1197287](ebird.org/ebird/hotspot/L1197287)`
+* [`ebird.org/ebird/hotspot/L1197287`](ebird.org/ebird/hotspot/L1197287)
 * 54 species (+2 other taxa) - Aug, Past 10 Years
 
 
@@ -134,5 +134,5 @@
 
   * House Sparrow
 
-Generated at 2017-08-13 11:20:24.963126
+Generated at 2017-08-13 11:21:10.123087
 
