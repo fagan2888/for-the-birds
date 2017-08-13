@@ -33,7 +33,7 @@ with open(fn, 'w') as f:
                     if a['class'][0] == 'item-heading':
                         f.write('* %s\n' % b.text)
                     elif a['class'][0] == 'subitem':
-                         f.write('    * %s\n' % b.text)
+                         f.write('    * **%s**\n' % b.text)
 
     f.write('\nGenerated at %s\n\n' % datetime.datetime.today())
 
