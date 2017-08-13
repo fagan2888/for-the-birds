@@ -18,10 +18,10 @@ fn = '%s.md' % r.sub('-', title)
 blocks = soup.select('.block')[1:] # Skips first block---title, location, &c
 
 with open(fn, 'w') as f:
-    f.write('\n# %s\n\n' % title)
-    f.write('* %s\n' %  location)
-    f.write('* [`%s`](%s)\n' % (url, url))
-    f.write('* %s\n\n' % desc)
+    f.write('\n* %s\n\n' % title)
+    f.write('    * %s\n' %  location)
+    f.write('    * [`%s`](%s)\n' % (url, url))
+    f.write('    * %s\n\n' % desc)
 
     for block in blocks:
         if block.text != '\n\n \n':
