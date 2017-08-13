@@ -18,10 +18,10 @@ fn = '%s.md' % r.sub('-', title)
 blocks = soup.select('.block')[1:] # Skips first block---title, location, &c
 
 with open(fn, 'w') as f:
-    f.write('\n* **%s**\n\n' % title)
-    f.write('    * %s\n' %  location)
-    f.write('    * [`%s`](%s)\n' % (url, url))
-    f.write('    * %s\n\n' % desc)
+    f.write('\n# %s\n\n' % title)
+    f.write('* %s\n' %  location)
+    f.write('* [`%s`](%s)\n' % (url, url))
+    f.write('* %s\n\n' % desc)
 
     for block in blocks:
         if block.text != '\n\n \n':
@@ -31,9 +31,9 @@ with open(fn, 'w') as f:
                 if type(b) == bs4.element.Tag:
                     a = b.attrs
                     if a['class'][0] == 'item-heading':
-                        f.write('\n## %s\n\n' % b.text)
+                        f.write('* %s\n' % b.text)
                     elif a['class'][0] == 'subitem':
-                         f.write('  * %s\n' % b.text)
+                         f.write('    * %s\n' % b.text)
 
     f.write('\nGenerated at %s\n\n' % datetime.datetime.today())
 
