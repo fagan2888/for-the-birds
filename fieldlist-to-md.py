@@ -22,6 +22,7 @@ with open(fn, 'w') as f:
     f.write('* %s\n' %  location)
     f.write('* [`%s`](%s)\n' % (url, url))
     f.write('* %s\n\n' % desc)
+    f.write('\n-----\n\n')
 
     for block in blocks:
         if block.text != '\n\n \n':
