@@ -20,7 +20,7 @@ blocks = soup.select('.block')[1:] # Skips first block---title, location, &c
 with open(fn, 'w') as f:
     f.write('\n# %s\n\n' % title)
     f.write('* %s\n' %  location)
-    f.write('* `%s`\n' % url)
+    f.write('* `[%s](%s)`\n' % (url, url))
     f.write('* %s\n\n' % desc)
 
     for block in blocks:
@@ -35,5 +35,5 @@ with open(fn, 'w') as f:
                     elif a['class'][0] == 'subitem':
                          f.write('  * %s\n' % b.text)
 
-    f.write('\nmhlinder@gmail.com \nGenerated at %s\n\n' % datetime.datetime.today())
+    f.write('\nGenerated at %s\n\n' % datetime.datetime.today())
 
