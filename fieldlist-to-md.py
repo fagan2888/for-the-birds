@@ -4,7 +4,8 @@ import datetime
 import re
 import requests
 
-r = requests.get('http://ebird.org/ebird/printableList?regionCode=L1197287&yr=last10&m=8')
+r = requests.get('http://ebird.org/ebird/printableList?regionCode=L285216&yr=last10&m=9')
+
 soup = bs4.BeautifulSoup(r.text, "lxml")
 
 title = soup.select('.effortsubhead')[0].text
@@ -18,11 +19,24 @@ fn = '%s.md' % r.sub('-', title)
 blocks = soup.select('.block')[1:] # Skips first block---title, location, &c
 
 with open(fn, 'w') as f:
+    f.write('''
+---
+fontsize: 10pt
+geometry: margin=1in
+header-includes:
+    - \\usepackage{multicol}
+    - \\newcommand{\\hideFromPandoc}[1]{#1}
+    - \\hideFromPandoc{
+        \\let\\Begin\\begin
+        \\let\\End\\end
+      }
+---
+''')
     f.write('\n# %s\n\n' % title)
     f.write('* %s\n' %  location)
     f.write('* [`%s`](%s)\n' % (url, url))
-    f.write('* %s\n\n' % desc)
-    f.write('\n-----\n\n')
+    f.write('* %s\n' % desc)
+    f.write('\n-----\n\n\Begin{multicols}{3}\n\n')
 
     for block in blocks:
         if block.text != '\n\n \n':
@@ -36,5 +50,6 @@ with open(fn, 'w') as f:
                     elif a['class'][0] == 'subitem':
                          f.write('    * %s\n' % b.text)
 
+    f.write('\n\End{multicols}')
     f.write('\nGenerated at %s\n\n' % datetime.datetime.today())
 
